@@ -1,6 +1,8 @@
 from utils.common_utils import read_config
 import argparse
-def trainings(config_path):
+
+
+def training(config_path):
     config = read_config(config_path)
     print(config)
 
@@ -18,4 +20,4 @@ if __name__ == '__main__':
 
     # Print User-input argument 
      print("Config input by user ",args.config)
-     trainings(args.config)
+     training(args.config)
