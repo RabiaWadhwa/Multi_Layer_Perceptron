@@ -1,0 +1,21 @@
+params:
+  epochs: 30
+  no_classes : 10
+  batch_size : 32
+  loss_function : sparse_categorical_crossentropy # No need to put quotes,they'll be automatically inserted
+  optimizer : SGD
+  metrics : accuracy
+  validation_datasize : 5000
+
+
+artifacts:
+  artifacts_dir: artifacts
+  model_dir: model
+  plot_dir: plot
+  checkpoint_dir : checkpoint
+
+logs:
+  log_dir: log_dir
+  general_logs : general_logs
+  tensorboard_logs : tensorboard_logs
+
