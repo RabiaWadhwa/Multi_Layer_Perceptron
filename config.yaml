@@ -1,5 +1,5 @@
 params:
-  epochs: 30
+  epochs: 5
   no_classes : 10
   batch_size : 32
   loss_function : sparse_categorical_crossentropy # No need to put quotes,they'll be automatically inserted

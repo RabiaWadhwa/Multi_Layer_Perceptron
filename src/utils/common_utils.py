@@ -1,6 +1,7 @@
 import yaml
 
 def read_config(filepath):
+    # Read config.yaml file
     with open(filepath,"r") as file:
         content = yaml.safe_load(file)
     
