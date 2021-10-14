@@ -1,8 +1,9 @@
 from src.utils.common_utils import read_config
 from src.utils.data_mgmt import get_data
-from src.utils.model import create_model, save_model
+from src.utils.model import create_model, save_model, save_plot
 import argparse
 import os
+import pandas as pd
 
 
 def training(config_path):
@@ -20,6 +21,7 @@ def training(config_path):
     model_classifier = create_model(metric, optimiser, loss_fn, no_classes)
     trained_model = model_classifier.fit(X_train, y_train, epochs=config["params"]["epochs"], validation_data=(X_valid, y_valid))
 
+    # Save model
     artifacts_dir = config["artifacts"]["artifacts_dir"]
     model_dir = config["artifacts"]["model_dir"]
     model_name = config["artifacts"]["model_name"]
@@ -27,6 +29,18 @@ def training(config_path):
     model_dir_path = os.path.join(artifacts_dir, model_dir)
     os.makedirs(model_dir_path, exist_ok=True)
     save_model(model_classifier, model_name, model_dir_path) # model_classifier is the model
+
+    # Save Plot
+    track_performance = pd.DataFrame(trained_model.history)
+    # Gives model loss, accuracy & validation loss & accuracy for each of the 30 epochs
+    print(f"Model,Validation Loss/Accuracy {track_performance}")
+
+    plot_dir = config["artifacts"]["plot_dir"]
+    plot_name = config["artifacts"]["plot_name"]
+
+    plot_dir_path = os.path.join(artifacts_dir, plot_dir)
+    os.makedirs(plot_dir_path, exist_ok=True)
+    save_plot(track_performance, plot_name, plot_dir_path)
 
 
 if __name__ == '__main__':
@@ -47,4 +61,4 @@ if __name__ == '__main__':
 # python training.py -c = config.yaml
 # python training.py --config = config.yaml  --secret= secret.yaml
 # python training.py config.yaml secret.yaml  # positional arguments
-# # can pass more arguments too
+

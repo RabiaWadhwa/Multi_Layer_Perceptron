@@ -1,5 +1,5 @@
 params:
-  epochs: 1
+  epochs: 4
   no_classes : 10
   batch_size : 32
   loss_function : sparse_categorical_crossentropy # No need to put quotes,they'll be automatically inserted
@@ -11,9 +11,10 @@ params:
 artifacts:
   artifacts_dir: artifacts
   model_dir: model
-  plot_dir: plot
+  plot_dir: plots
   checkpoint_dir : checkpoint
   model_name: Digit_classifier
+  plot_name: Track_performance
 
 
 logs:

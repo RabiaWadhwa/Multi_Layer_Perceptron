@@ -1,6 +1,7 @@
 import tensorflow as tf
 import time
 import os
+import matplotlib.pyplot as plt
 
 
 def create_model(metric, optimiser, loss_fn, no_classes):
@@ -29,6 +30,17 @@ def create_unique_file_name(filename):
 
 def save_model(model, filename, model_dir):
     model_name = create_unique_file_name(filename)
-    file_path = os.path.join(model_dir, model_name)
+    file_path = os.path.join(model_dir, model_name) # model/filename
     print(f"Model path - {file_path}")
-    model.save(file_path)
+    model.save(file_path)  # saves New model version with new timestamp ,everytime program is run
+
+
+def save_plot(df, plot_name, plot_dir):
+    df.plot(figsize=(10,7))
+    plt.grid(True)
+
+    plot_path = os.path.join(plot_dir, plot_name)  # plot/plot_name
+    print(f"Plot path - {plot_path}")
+    plt.savefig(plot_path)
+    # Don't use plt.show() before savefig()
+
