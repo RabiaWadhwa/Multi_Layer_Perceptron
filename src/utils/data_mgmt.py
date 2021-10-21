@@ -1,6 +1,8 @@
 import tensorflow as tf
 
 
+# Load Mnist Datasets
+# Return Training,Validation & Test dataset
 def get_data(validation_datasize):
     mnist = tf.keras.datasets.mnist
     (X_train_full, y_train_full), (X_test, y_test) = mnist.load_data()
