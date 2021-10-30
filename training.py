@@ -1,7 +1,7 @@
 from src.utils.common_utils import read_config
 from src.utils.data_mgmt import get_data
 from src.utils.model import create_model, save_model, save_plot
-from src.utils.callback import get_callback
+from src.utils.callback import get_callbacks
 
 import argparse
 import os
@@ -24,17 +24,18 @@ def training(config_path):
 
     model_classifier = create_model(metric, optimiser, loss_fn, no_classes)
 
-    callback_list = get_callback(config,X_train)
-
-    trained_model = model_classifier.fit(X_train, y_train, epochs=config["params"]["epochs"], validation_data=(X_valid, y_valid), callbacks=callback_list)
-
-    # Save model
     artifacts_dir = config["artifacts"]["artifacts_dir"]
     model_dir = config["artifacts"]["model_dir"]
     model_name = config["artifacts"]["model_name"]
 
     model_dir_path = os.path.join(artifacts_dir, model_dir)
     os.makedirs(model_dir_path, exist_ok=True)
+    
+    callback_list = get_callbacks(config,X_train) # X_train for writing sample images to tensorboard
+
+    trained_model = model_classifier.fit(X_train, y_train, epochs=config["params"]["epochs"], validation_data=(X_valid, y_valid), callbacks=callback_list)
+
+    # Save model
     save_model(model_classifier, model_name, model_dir_path) # model_classifier is the model
 
     # Save Plot

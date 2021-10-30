@@ -6,15 +6,18 @@ params:
   optimizer : SGD
   metrics : accuracy
   validation_datasize : 5000
+  patience: 2
+  restore_best_weights: True
+  save_best_only: True
 
 
 artifacts:
   artifacts_dir: artifacts
   model_dir: model
   plot_dir: plots
-  checkpoint_dir : checkpoint
   model_name: Digit_classifier
   plot_name: Track_performance
+  checkpoint_dir: model_checkpoint
 
 
 logs:
