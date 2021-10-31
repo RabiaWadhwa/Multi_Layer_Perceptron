@@ -2,8 +2,6 @@ import yaml
 ''' 
 Read Config.yaml file
 '''
-
-
 def read_config(filepath):
     # Read config.yaml file
     with open(filepath, "r") as file:

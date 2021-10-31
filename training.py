@@ -31,6 +31,7 @@ def training(config_path):
     model_dir_path = os.path.join(artifacts_dir, model_dir)
     os.makedirs(model_dir_path, exist_ok=True)
     
+    # Retreiving callback list
     callback_list = get_callbacks(config,X_train) # X_train for writing sample images to tensorboard
 
     trained_model = model_classifier.fit(X_train, y_train, epochs=config["params"]["epochs"], validation_data=(X_valid, y_valid), callbacks=callback_list)
