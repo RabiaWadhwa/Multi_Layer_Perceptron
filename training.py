@@ -34,6 +34,7 @@ def training(config_path):
     # Retreiving callback list
     callback_list = get_callbacks(config,X_train) # X_train for writing sample images to tensorboard
 
+    #Adding comments for dev branch
     trained_model = model_classifier.fit(X_train, y_train, epochs=config["params"]["epochs"], validation_data=(X_valid, y_valid), callbacks=callback_list)
 
     # Save model
